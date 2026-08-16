@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="ja" data-bs-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>黒見本帳 ｜ ポチの黒いガジェット一覧</title>
+<meta name="description" content="黒いガジェットだけを選び続けているポチ（@pochi_blackgadget）が、実際に机の上で使っているものを黒の濃さ順に並べた一覧です。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Murecho:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+/* ============================================================
+   TOKENS ＋ Bootstrap のテーマ上書き
+   ============================================================ */
+:root{
+  --void:#000; --ink:#08080A; --surface:#0E0F12; --surface-2:#15161A;
+  --line:#26272C; --line-soft:#191A1E;
+  --dim:#75777E; --mid:#A6A8AF; --fg:#EDEDF0; --glow:#D9AE6B;
+
+  --f-display:"Zen Kaku Gothic New",-apple-system,sans-serif;
+  --f-body:"Murecho","Zen Kaku Gothic New",-apple-system,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,monospace;
+
+  --pr-h:32px; --nav-h:54px;
+
+  /* Bootstrap 変数を差し替えて、素の見た目にならないようにする */
+  --bs-body-bg:#000;
+  --bs-body-color:#EDEDF0;
+  --bs-body-font-family:var(--f-body);
+  --bs-body-font-weight:300;
+  --bs-body-line-height:1.9;
+  --bs-border-color:#26272C;
+  --bs-border-radius:0;
+  --bs-border-radius-sm:0;
+  --bs-border-radius-lg:0;
+  --bs-emphasis-color:#fff;
+  --bs-secondary-color:#75777E;
+  --bs-link-color:#EDEDF0;
+  --bs-link-hover-color:#D9AE6B;
+  --bs-focus-ring-color:rgba(217,174,107,.45);
+}
+*{border-radius:0 !important}
+body{-webkit-font-smoothing:antialiased;overflow-x:hidden;padding-top:calc(var(--pr-h) + var(--nav-h))}
+.container-xxl{max-width:1280px}
+
+.eyebrow{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dim);line-height:1.6}
+.mono{font-family:var(--f-mono)}
+
+/* フィルムグレイン */
+#grain{
+  position:fixed;inset:-50%;z-index:2000;pointer-events:none;opacity:.05;mix-blend-mode:screen;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain 6s steps(4) infinite;
+}
+@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-2%)}100%{transform:translate(0,0)}}
+
+/* ============================================================
+   PR表記（最上部・固定）／ ナビ ／ 進捗
+   ============================================================ */
+.pr-bar{
+  position:fixed;top:0;left:0;right:0;z-index:1045;height:var(--pr-h);
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  background:rgba(4,4,6,.9);backdrop-filter:saturate(160%) blur(14px);
+  border-bottom:1px solid var(--line);
+  font-family:var(--f-mono);font-size:.6rem;letter-spacing:.12em;color:var(--mid);
+  padding-inline:12px;
+}
+.pr-bar .badge{background:var(--glow);color:#000;font-weight:600;letter-spacing:.16em;padding:2px 7px}
+.pr-bar .txt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.navbar.site{
+  position:fixed;top:var(--pr-h);left:0;right:0;z-index:1040;height:var(--nav-h);
+  background:rgba(4,4,6,.82);backdrop-filter:saturate(160%) blur(14px);
+  border-bottom:1px solid var(--line);padding:0;
+}
+.navbar.site .navbar-brand{font-family:var(--f-display);font-weight:900;font-size:.95rem;letter-spacing:-.02em}
+.navbar.site .nav-link{
+  font-family:var(--f-mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--dim);padding:.35rem .9rem;transition:color .2s;
+}
+.navbar.site .nav-link:hover,.navbar.site .nav-link.active{color:var(--glow)}
+.navbar-toggler{border:1px solid var(--line);padding:.3rem .55rem}
+.navbar-toggler:focus{box-shadow:none;border-color:var(--glow)}
+.offcanvas{background:var(--ink);border-left:1px solid var(--line)}
+
+#prog{position:fixed;top:calc(var(--pr-h) + var(--nav-h));left:0;height:1px;width:0;z-index:1046;background:var(--glow);transition:width .1s linear}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position:relative;min-height:calc(100svh - var(--pr-h) - var(--nav-h));
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding-block:clamp(60px,10vh,120px) clamp(34px,6vh,62px);isolation:isolate;
+}
+#spot{position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,40%),rgba(255,255,255,.055),transparent 70%);
+  transition:opacity .4s ease;}
+.hero-head{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap;margin-bottom:clamp(24px,6vh,52px)}
+.hero-head .rule{flex:1;height:1px;background:var(--line);min-width:36px}
+h1{font-family:var(--f-display);font-weight:900;font-size:clamp(2.4rem,8.4vw,5.4rem);line-height:1.03;letter-spacing:-.038em;text-wrap:balance}
+h1 .ln{display:block;overflow:hidden}
+h1 .ln>span{display:block;transform:translateY(105%);animation:rise .95s cubic-bezier(.16,1,.3,1) forwards}
+h1 .ln:nth-child(2)>span{animation-delay:.1s}
+@keyframes rise{to{transform:none}}
+h1 .thin{font-weight:500;color:var(--mid)}
+.hero-lede{margin-top:clamp(18px,4vh,30px);max-width:44ch;font-size:clamp(.9rem,2.4vw,1rem);color:var(--mid);opacity:0;animation:fade .9s ease .45s forwards}
+@keyframes fade{to{opacity:1}}
+.hero-meta{margin-top:clamp(26px,5vh,44px);display:flex;gap:clamp(18px,5vw,48px);flex-wrap:wrap;padding-top:18px;border-top:1px solid var(--line-soft);opacity:0;animation:fade .9s ease .6s forwards}
+.hero-meta .val{font-family:var(--f-mono);font-size:1rem;display:block;margin-top:3px}
+
+/* ティッカー */
+.ticker{border-block:1px solid var(--line);overflow:hidden;white-space:nowrap;padding-block:9px;background:var(--ink)}
+.ticker .track{display:inline-flex;gap:36px;animation:slide 34s linear infinite;will-change:transform}
+.ticker span{font-family:var(--f-mono);font-size:.64rem;letter-spacing:.16em;color:var(--dim);display:inline-flex;align-items:center;gap:8px}
+.ticker i{width:9px;height:9px;display:inline-block;border:1px solid var(--line)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ============================================================
+   セクション見出し
+   ============================================================ */
+.sec{padding-block:clamp(48px,8vh,92px)}
+.sec-head{margin-bottom:clamp(22px,4vh,38px)}
+.sec-head h2{font-family:var(--f-display);font-weight:700;font-size:clamp(1.3rem,3.4vw,1.85rem);letter-spacing:-.025em;margin-top:10px;line-height:1.4}
+.sec-head p{color:var(--dim);font-size:.84rem;margin-top:8px;max-width:54ch}
+
+/* ============================================================
+   絞り込みツールバー
+   ============================================================ */
+.toolbar{border:1px solid var(--line);background:var(--ink);padding:14px 16px;margin-bottom:-1px}
+.form-control,.form-select{
+  background:var(--surface);border-color:var(--line);color:var(--fg);
+  font-family:var(--f-mono);font-size:.76rem;letter-spacing:.04em;
+}
+.form-control:focus,.form-select:focus{background:var(--surface);border-color:var(--glow);color:var(--fg);box-shadow:none}
+.form-control::placeholder{color:var(--dim)}
+.chip-btn{
+  font-family:var(--f-mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--dim);background:transparent;border:1px solid var(--line);
+  padding:.34rem .8rem;transition:.2s;
+}
+.chip-btn:hover{color:var(--fg);border-color:var(--mid)}
+.chip-btn.on{color:#000;background:var(--fg);border-color:var(--fg)}
+.count-note{font-family:var(--f-mono);font-size:.64rem;letter-spacing:.14em;color:var(--dim)}
+
+/* ============================================================
+   一覧リスト
+   ============================================================ */
+.tbl{border:1px solid var(--line);border-bottom:0}
+.trow{
+  display:grid;grid-template-columns:50px 28px minmax(160px,1.05fr) minmax(180px,1.5fr) 112px 32px;
+  align-items:center;gap:16px;padding:14px clamp(14px,2vw,22px);
+  border-bottom:1px solid var(--line);text-decoration:none;position:relative;
+  transition:background .25s;color:inherit;
+}
+.trow.head{background:var(--ink);padding-block:9px;position:sticky;top:calc(var(--pr-h) + var(--nav-h));z-index:10}
+.trow.head span{font-family:var(--f-mono);font-size:.58rem;letter-spacing:.2em;color:var(--dim);text-transform:uppercase}
+.trow.item::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--glow);transform:scaleY(0);transform-origin:top;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.trow.item:hover,.trow.item:focus-visible{background:var(--surface);outline:none}
+.trow.item:hover::before,.trow.item:focus-visible::before{transform:scaleY(1)}
+.trow.item:focus-visible{box-shadow:inset 0 0 0 1px var(--glow)}
+.t-no{font-family:var(--f-mono);font-size:.65rem;color:var(--dim)}
+.t-sw{width:26px;height:26px;border:1px solid var(--line)}
+.t-name{font-family:var(--f-display);font-weight:500;font-size:.89rem;line-height:1.5;letter-spacing:-.01em}
+.t-name em{display:block;font-style:normal;font-family:var(--f-mono);font-size:.56rem;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;margin-bottom:3px}
+.t-desc{font-size:.77rem;color:var(--mid);line-height:1.7}
+.t-price{font-family:var(--f-mono);font-size:.81rem;text-align:right}
+.t-go{font-family:var(--f-mono);font-size:.78rem;color:var(--dim);text-align:right;transition:transform .3s,color .3s}
+.trow.item:hover .t-go{transform:translateX(4px);color:var(--glow)}
+.empty{padding:40px 20px;text-align:center;color:var(--dim);font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;border-bottom:1px solid var(--line)}
+
+/* ============================================================
+   見本帳
+   ============================================================ */
+.scale{display:grid;grid-template-columns:repeat(6,1fr);border:1px solid var(--line)}
+.chip{appearance:none;border:0;border-right:1px solid var(--line);background:transparent;color:inherit;font:inherit;text-align:left;cursor:pointer;padding:0;display:block}
+.chip:last-child{border-right:0}
+.chip .fill{height:clamp(84px,14vw,148px);transition:filter .35s;position:relative}
+.chip .fill::after{content:"";position:absolute;inset:0;opacity:0;transition:opacity .35s;background:linear-gradient(140deg,rgba(255,255,255,.22),transparent 55%)}
+.chip .cap{padding:10px 8px 12px;border-top:1px solid var(--line);background:var(--ink)}
+.chip .hex{font-family:var(--f-mono);font-size:.6rem;color:var(--dim);display:block;transition:color .25s}
+.chip .jp{font-family:var(--f-display);font-weight:500;font-size:.7rem;color:var(--mid);display:block;margin-top:2px;white-space:nowrap}
+.chip:hover .fill,.chip:focus-visible .fill{filter:brightness(2.2)}
+.chip:hover .fill::after,.chip:focus-visible .fill::after{opacity:1}
+.chip:hover .hex,.chip:focus-visible .hex{color:var(--glow)}
+.chip:focus-visible{outline:2px solid var(--glow);outline-offset:-2px}
+
+/* ============================================================
+   カード
+   ============================================================ */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.card-x{
+  background:var(--ink);padding:clamp(20px,3.2vw,32px);display:flex;flex-direction:column;gap:18px;
+  opacity:0;transform:translateY(16px);
+  transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1),background .3s;
+  scroll-margin-top:calc(var(--pr-h) + var(--nav-h) + 16px);
+}
+.card-x.in{opacity:1;transform:none}
+.card-x.flash{background:var(--surface-2)}
+.card-top{display:flex;gap:18px;align-items:flex-start}
+.swatch{width:clamp(72px,10vw,100px);aspect-ratio:1;flex:none;border:1px solid var(--line);position:relative;overflow:hidden}
+.swatch[data-finish="anodized"]::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.055) 0 1px,transparent 1px 3px)}
+.swatch[data-finish="gloss"]::after{content:"";position:absolute;inset:0;background:linear-gradient(128deg,rgba(255,255,255,.2),rgba(255,255,255,0) 42%,rgba(255,255,255,.06) 78%,rgba(255,255,255,0))}
+.swatch[data-finish="matte"]::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 30% 0%,rgba(255,255,255,.07),transparent 62%)}
+.swatch .tag{position:absolute;left:0;bottom:0;font-family:var(--f-mono);font-size:.54rem;color:var(--glow);background:rgba(0,0,0,.65);padding:3px 5px;z-index:2}
+.card-cat{font-family:var(--f-mono);font-size:.59rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+.card-x h3{font-family:var(--f-display);font-weight:700;font-size:clamp(1rem,2.4vw,1.24rem);letter-spacing:-.018em;line-height:1.45;margin-top:8px;text-wrap:balance}
+.card-finish{font-family:var(--f-mono);font-size:.63rem;color:var(--dim);margin-top:8px}
+.verdict{font-size:.86rem;color:var(--mid);border-left:1px solid var(--line);padding-left:16px}
+.verdict b{color:var(--fg);font-weight:500}
+.specs{border-top:1px solid var(--line-soft);padding-top:13px;display:grid;gap:6px}
+.specs div{display:flex;justify-content:space-between;gap:14px;font-family:var(--f-mono);font-size:.68rem;line-height:1.7}
+.specs .k{color:var(--dim);white-space:nowrap}
+.specs .v{color:var(--mid);text-align:right}
+.buy{margin-top:auto;padding-top:18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line-soft)}
+.price{font-family:var(--f-mono);font-size:1rem}
+.price small{display:block;font-size:.57rem;color:var(--dim);letter-spacing:.14em;margin-bottom:2px}
+
+.btn-buy{
+  background:var(--fg);color:#000;font-family:var(--f-display);font-weight:700;font-size:.78rem;
+  letter-spacing:.04em;padding:10px 18px;border:1px solid var(--fg);transition:.2s;text-decoration:none;
+}
+.btn-buy:hover{background:#fff;border-color:#fff;color:#000;transform:translateY(-1px)}
+.btn-buy[data-empty="1"]{background:var(--surface-2);color:var(--dim);border:1px dashed var(--line);pointer-events:none}
+.btn-ghost{
+  background:transparent;color:var(--mid);border:1px solid var(--line);
+  font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;padding:10px 14px;transition:.2s;
+}
+.btn-ghost:hover{color:var(--glow);border-color:var(--glow)}
+
+/* 商品写真 */
+.card-photo{aspect-ratio:4/3;overflow:hidden;border:1px solid var(--line);background:var(--surface);position:relative}
+.card-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.16,1,.3,1)}
+.card-x:hover .card-photo img{transform:scale(1.035)}
+.card-photo .ph-tag{position:absolute;left:0;bottom:0;z-index:2;font-family:var(--f-mono);font-size:.54rem;letter-spacing:.14em;color:var(--mid);background:rgba(0,0,0,.66);padding:4px 7px}
+.m-photo{aspect-ratio:4/3;overflow:hidden;border:1px solid var(--line);margin-bottom:20px;background:var(--surface)}
+.m-photo img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* モーダル */
+.modal-content{background:var(--ink);border:1px solid var(--line)}
+.modal-header,.modal-footer{border-color:var(--line)}
+.modal-title{font-family:var(--f-display);font-weight:700;letter-spacing:-.02em;font-size:1.05rem}
+.btn-close{filter:invert(1) grayscale(1);opacity:.5}
+
+/* アコーディオン */
+.accordion-item{background:var(--ink);border-color:var(--line)}
+.accordion-button{background:var(--ink);color:var(--fg);font-family:var(--f-display);font-weight:700;font-size:.95rem;padding:20px 22px}
+.accordion-button:not(.collapsed){background:var(--surface-2);color:var(--fg);box-shadow:none}
+.accordion-button:focus{box-shadow:none;border-color:var(--glow)}
+.accordion-button::after{filter:invert(1) grayscale(1);opacity:.5}
+.accordion-body{color:var(--dim);font-size:.85rem;padding:0 22px 22px}
+
+/* IG / フッター / トップへ */
+.ig{padding-block:clamp(56px,9vh,105px);border-top:1px solid var(--line);text-align:center}
+.ig h2{font-family:var(--f-display);font-weight:900;font-size:clamp(1.55rem,5vw,2.6rem);letter-spacing:-.035em;margin:14px 0 18px;line-height:1.25}
+.ig p{color:var(--dim);font-size:.85rem;max-width:40ch;margin:0 auto 28px}
+.handle{font-family:var(--f-mono);font-size:clamp(.86rem,2.6vw,1rem);text-decoration:none;border:1px solid var(--line);padding:14px 26px;display:inline-block;transition:.25s}
+.handle:hover{border-color:var(--glow);color:var(--glow)}
+footer{border-top:1px solid var(--line);padding-block:34px 52px;font-size:.72rem;color:var(--dim)}
+.disclosure{font-family:var(--f-mono);font-size:.65rem;line-height:2;border:1px solid var(--line);padding:16px 18px;margin-bottom:22px;color:var(--mid)}
+#toTop{
+  position:fixed;right:20px;bottom:20px;z-index:1030;width:44px;height:44px;
+  border:1px solid var(--line);background:rgba(8,8,10,.9);backdrop-filter:blur(10px);
+  color:var(--mid);font-family:var(--f-mono);font-size:.8rem;
+  opacity:0;pointer-events:none;transition:opacity .3s,color .2s,border-color .2s;
+}
+#toTop.on{opacity:1;pointer-events:auto}
+#toTop:hover{color:var(--glow);border-color:var(--glow)}
+.toast{background:var(--surface-2);border:1px solid var(--line);font-family:var(--f-mono);font-size:.72rem}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media(max-width:991px){
+  .scale{grid-template-columns:repeat(3,1fr)}
+  .chip:nth-child(3n){border-right:0}
+  .chip:nth-child(-n+3) .cap{border-bottom:1px solid var(--line)}
+}
+@media(max-width:767px){
+  .grid{grid-template-columns:1fr}
+  .trow{grid-template-columns:36px 24px 1fr 92px;grid-template-areas:"no sw name price" ". . desc go";row-gap:6px;padding-block:15px}
+  .trow.head{display:none}
+  .t-no{grid-area:no}.t-sw{grid-area:sw}.t-name{grid-area:name}
+  .t-price{grid-area:price}.t-desc{grid-area:desc}.t-go{grid-area:go}
+}
+@media(max-width:520px){
+  .scale{grid-template-columns:repeat(2,1fr)}
+  .chip:nth-child(3n){border-right:1px solid var(--line)}
+  .chip:nth-child(even){border-right:0}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::after,*::before{animation:none!important;transition-duration:.01ms!important}
+  .card-x{opacity:1;transform:none}
+  h1 .ln>span{transform:none}
+  .hero-lede,.hero-meta{opacity:1}
+  #grain{display:none}
+}
+</style>
+</head>
+<body>
+
+<div id="grain" aria-hidden="true"></div>
+
+<!-- ============ PR表記（最上部・固定） ============ -->
+<div class="pr-bar">
+  <span class="badge">PR</span>
+  <span class="txt">当ページはアフィリエイト広告を利用しています</span>
+</div>
+
+<!-- ============ ナビ ============ -->
+<nav class="navbar site navbar-expand-lg">
+  <div class="container-xxl h-100 d-flex align-items-center">
+    <a class="navbar-brand" href="#top">黒見本帳</a>
+    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#navPanel" aria-controls="navPanel" aria-label="メニューを開く">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="navPanel">
+      <div class="offcanvas-header">
+        <span class="eyebrow">Menu</span>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="閉じる"></button>
+      </div>
+      <div class="offcanvas-body justify-content-end">
+        <ul class="navbar-nav align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="#index">Index</a></li>
+          <li class="nav-item"><a class="nav-link" href="#swatches">Swatches</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gear">Gear</a></li>
+          <li class="nav-item"><a class="nav-link" href="#criteria">Criteria</a></li>
+          <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/pochi_blackgadget/" target="_blank" rel="noopener">Instagram ↗</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+<div id="prog" aria-hidden="true"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero container-xxl" id="top">
+  <div id="spot" aria-hidden="true"></div>
+  <div class="hero-head">
+    <span class="eyebrow">Black Gadget Index</span>
+    <span class="rule"></span>
+    <span class="eyebrow">ポチ ｜ 黒いガジェットと仕事術</span>
+  </div>
+  <h1>
+    <span class="ln"><span>机の上から、</span></span>
+    <span class="ln"><span class="thin">色をなくす。</span></span>
+  </h1>
+  <p class="hero-lede">黒いガジェットだけを買い続けています。ここに並んでいるのは、Instagramで紹介して、いまも実際に自分の机で使っているものだけ。黒の濃さ順に並べました。</p>
+  <div class="hero-meta">
+    <div><span class="eyebrow">掲載点数</span><span class="val" id="count">—</span></div>
+    <div><span class="eyebrow">最終更新</span><span class="val">2026.08</span></div>
+    <div><span class="eyebrow">Instagram</span><span class="val">@pochi_blackgadget</span></div>
+  </div>
+</header>
+
+<div class="ticker" aria-hidden="true"><div class="track" id="track"></div></div>
+
+<!-- ============ INDEX ============ -->
+<section class="sec container-xxl" id="index">
+  <div class="sec-head">
+    <span class="eyebrow">01 — Index</span>
+    <h2>一覧</h2>
+    <p>製品名で検索、カテゴリで絞り込み、並べ替えができます。行を選ぶと詳細まで移動します。</p>
+  </div>
+
+  <div class="toolbar">
+    <div class="row g-3 align-items-center">
+      <div class="col-12 col-lg-4">
+        <input type="search" class="form-control" id="q" placeholder="製品名・カテゴリで検索" aria-label="製品を検索">
+      </div>
+      <div class="col-12 col-lg-5">
+        <div class="d-flex flex-wrap gap-2" id="cats" role="group" aria-label="カテゴリで絞り込み"></div>
+      </div>
+      <div class="col-8 col-lg-2">
+        <select class="form-select" id="sort" aria-label="並べ替え">
+          <option value="dark">黒が濃い順</option>
+          <option value="light">黒が淡い順</option>
+          <option value="cheap">価格が安い順</option>
+          <option value="expensive">価格が高い順</option>
+          <option value="name">製品名順</option>
+        </select>
+      </div>
+      <div class="col-4 col-lg-1 text-end"><span class="count-note" id="hits">—</span></div>
+    </div>
+  </div>
+
+  <div class="tbl">
+    <div class="trow head" aria-hidden="true">
+      <span>No.</span><span></span><span>Product</span><span>Note</span><span class="text-end">Price</span><span></span>
+    </div>
+    <div id="tbody"></div>
+  </div>
+</section>
+
+<!-- ============ SWATCHES ============ -->
+<section class="sec container-xxl" id="swatches">
+  <div class="sec-head">
+    <span class="eyebrow">02 — Swatches</span>
+    <h2>ひとくちに黒と言っても、同じ黒はひとつもない。</h2>
+    <p>製品ごとの黒を見本にして並べました。色を選ぶと、その黒の製品まで移動します。</p>
+  </div>
+  <div class="scale" id="scale"></div>
+</section>
+
+<!-- ============ GEAR ============ -->
+<section class="sec container-xxl" id="gear">
+  <div class="sec-head">
+    <span class="eyebrow">03 — Gear</span>
+    <h2>使っているもの</h2>
+    <p>最新の価格と在庫は各リンク先でご確認ください。</p>
+  </div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<!-- ============ CRITERIA ============ -->
+<section class="sec container-xxl" id="criteria">
+  <div class="sec-head">
+    <span class="eyebrow">04 — Criteria</span>
+    <h2>黒を選ぶときに見ているところ</h2>
+  </div>
+  <div class="accordion" id="acc">
+    <div class="accordion-item">
+      <h3 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a1">指紋が目立たない仕上げか</button></h3>
+      <div id="a1" class="accordion-collapse collapse show" data-bs-parent="#acc">
+        <div class="accordion-body">光沢の強い黒は、届いた翌日には指紋だらけになります。写真に撮ったときの差も大きいので、マットかアルマイト仕上げを優先しています。</div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a2">手持ちの黒と色味が揃うか</button></h3>
+      <div id="a2" class="accordion-collapse collapse" data-bs-parent="#acc">
+        <div class="accordion-body">青みの強い黒と茶色みの強い黒が混ざると、机の上が途端に散らかって見えます。濃さより色味を合わせるほうが効きます。</div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a3">暗い部屋で見えるか</button></h3>
+      <div id="a3" class="accordion-collapse collapse" data-bs-parent="#acc">
+        <div class="accordion-body">黒い機材は夜になるとポートも刻印も見えません。バックライトの有無と、刻印のコントラストは必ず確認します。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INSTAGRAM ============ -->
+<section class="ig container-xxl">
+  <span class="eyebrow">05 — Follow</span>
+  <h2>新しい黒は、<br>Instagramから。</h2>
+  <p>買ったその日の写真と、1週間使ったあとの正直な感想を投稿しています。</p>
+  <a class="handle" href="https://www.instagram.com/pochi_blackgadget/" target="_blank" rel="noopener">@pochi_blackgadget →</a>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="container-xxl">
+  <p class="disclosure">
+    当サイトはアフィリエイトプログラムに参加しており、掲載リンクを経由して商品が購入された場合、運営者に紹介料が支払われることがあります。<br>
+    Amazonのアソシエイトとして、ポチ｜黒いガジェットと仕事術は適格販売により収入を得ています。
+  </p>
+  <div class="d-flex justify-content-between flex-wrap gap-3">
+    <span class="eyebrow">© 2026 ポチ ｜ 黒いガジェットと仕事術</span>
+    <a class="eyebrow text-decoration-none" href="#top">↑ Back to top</a>
+  </div>
+</footer>
+
+<button id="toTop" aria-label="ページ先頭へ戻る">↑</button>
+
+<!-- 詳細モーダル -->
+<div class="modal fade" id="detail" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="mTitle"></h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+      </div>
+      <div class="modal-body" id="mBody"></div>
+      <div class="modal-footer justify-content-between">
+        <button class="btn-ghost" id="mCopy">リンクをコピー</button>
+        <span id="mBuy"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3">
+  <div id="toast" class="toast align-items-center" role="status" aria-live="polite">
+    <div class="d-flex"><div class="toast-body" id="toastMsg"></div>
+      <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="閉じる"></button></div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+/* ============================================================
+   ▼ 更新するのはこの配列だけ
+
+   url    : アフィリエイトリンク（空なら「リンク準備中」表示）
+   img    : 商品写真のパス（例 "images/000_MacBookPro.JPG"／省略可）
+   hex    : そのガジェットの黒。並べ替えと見本帳に使われます
+   finish : "matte" / "gloss" / "anodized"
+   note   : 一覧に出る1行概要（40字前後）
+   verdict: 詳細カードに出るコメント（<b>で強調可）
+   ============================================================ */
+const PRODUCTS = [
+  { cat:"Laptop", name:"MacBook Pro 14インチ（M4）スペースブラック",
+    hex:"#1C1D21", shade:"スペースブラック", finish:"anodized", finishJp:"アルマイト",
+    img:"images/000_MacBookPro.JPG",
+    note:"ミッドナイトより深い黒。マットな質感で指紋が目立たない。",
+    verdict:"Airのミッドナイトとも迷ったけれど、<b>黒が欲しいならPro一択</b>だった。マットな仕上げで指紋が目立ちにくく、Thunderbolt 4が両サイドにあるので配線も自由。<b>Nano-textureディスプレイ</b>は窓辺でも屋外でも映り込まず、スピーカーもノートPCとは思えない重厚さ。",
+    specs:[["CHIP","Apple M4"],["MEMORY","24GB"],["STORAGE","SSD 1TB"],["DISPLAY","14インチ Liquid Retina XDR / Nano-texture"],["BATTERY","最大24時間"],["WEIGHT","約1.55kg"]],
+    price:"¥248,800〜", url:"" }
+];
+
+/* ------------------------------------------------------------
+   以下は描画処理（通常は編集不要）
+   ------------------------------------------------------------ */
+$(function(){
+
+  const lum = h => { const n = parseInt(h.slice(1),16);
+    return (n>>16&255)*.299 + (n>>8&255)*.587 + (n&255)*.114; };
+  const yen = p => parseInt(String(p).replace(/[^0-9]/g,''),10) || 0;
+  const esc = s => $('<div>').text(s).html();
+  const no  = i => String(i+1).padStart(2,'0');
+
+  /* マスター：黒が濃い順に固定IDを振る */
+  const MASTER = PRODUCTS.map(p => $.extend({}, p, {lum:lum(p.hex), yenv:yen(p.price)}))
+                         .sort((a,b) => a.lum - b.lum)
+                         .map((p,i) => $.extend(p, {id:'g'+i, idx:i}));
+
+  const state = {q:'', cat:'ALL', sort:'dark'};
+
+  /* --- カテゴリボタン --- */
+  const cats = ['ALL', ...new Set(MASTER.map(p => p.cat))];
+  $('#cats').html(cats.map(c =>
+    `<button type="button" class="chip-btn${c==='ALL'?' on':''}" data-cat="${esc(c)}">${c==='ALL'?'すべて':esc(c)}</button>`
+  ).join(''));
+
+  /* --- 見本帳（並べ替えの影響を受けない固定表示） --- */
+  $('#scale').html(MASTER.map(p => `
+    <button class="chip" data-target="${p.id}" aria-label="${esc(p.shade)}の製品へ移動">
+      <span class="fill" style="background:${p.hex}"></span>
+      <span class="cap"><span class="hex">${p.hex.toUpperCase()}</span><span class="jp">${esc(p.shade)}</span></span>
+    </button>`).join(''));
+
+  /* --- 詳細カード --- */
+  $('#grid').html(MASTER.map(p => `
+    <article class="card-x" id="${p.id}" data-cat="${esc(p.cat)}">
+      ${p.img ? `<div class="card-photo"><img src="${esc(p.img)}" alt="${esc(p.name)}" loading="lazy" decoding="async"><span class="ph-tag">${esc(p.shade)}</span></div>` : ``}
+      <div class="card-top">
+        <div class="swatch" data-finish="${p.finish}" style="background:${p.hex}">
+          <span class="tag">${p.hex.toUpperCase()}</span>
+        </div>
+        <div class="flex-fill min-w-0">
+          <span class="card-cat">${no(p.idx)} / ${esc(p.cat)}</span>
+          <h3>${esc(p.name)}</h3>
+          <span class="card-finish">${esc(p.shade)} / ${esc(p.finishJp)}仕上げ</span>
+        </div>
+      </div>
+      <p class="verdict">${p.verdict}</p>
+      <div class="specs">
+        ${p.specs.map(s => `<div><span class="k">${esc(s[0])}</span><span class="v">${esc(s[1])}</span></div>`).join('')}
+      </div>
+      <div class="buy">
+        <span class="price"><small>参考価格</small>${esc(p.price)}</span>
+        <span class="d-flex gap-2">
+          <button class="btn-ghost js-detail" data-id="${p.id}">詳細</button>
+          ${p.url
+            ? `<a class="btn-buy" href="${p.url}" target="_blank" rel="nofollow sponsored noopener">Amazonで見る</a>`
+            : `<span class="btn-buy" data-empty="1">リンク準備中</span>`}
+        </span>
+      </div>
+    </article>`).join(''));
+
+  /* --- ティッカー --- */
+  const line = MASTER.map(p => `<span><i style="background:${p.hex}"></i>${p.hex.toUpperCase()} ${esc(p.shade)}</span>`).join('');
+  $('#track').html(line + line);
+  $('#count').text(no(MASTER.length - 1));
+
+  /* --- 一覧の描画（検索・絞り込み・並べ替え） --- */
+  function render(){
+    let rows = MASTER.filter(p => {
+      const hitCat = state.cat === 'ALL' || p.cat === state.cat;
+      const key = (p.name + p.cat + p.shade + p.note).toLowerCase();
+      return hitCat && key.includes(state.q);
+    });
+
+    const sorters = {
+      dark:      (a,b) => a.lum - b.lum,
+      light:     (a,b) => b.lum - a.lum,
+      cheap:     (a,b) => a.yenv - b.yenv,
+      expensive: (a,b) => b.yenv - a.yenv,
+      name:      (a,b) => a.name.localeCompare(b.name,'ja')
+    };
+    rows = rows.sort(sorters[state.sort]);
+
+    $('#hits').text(String(rows.length).padStart(2,'0') + ' / ' + String(MASTER.length).padStart(2,'0'));
+
+    if(!rows.length){
+      $('#tbody').html('<div class="empty">該当する製品がありません</div>');
+      return;
+    }
+    $('#tbody').html(rows.map(p => `
+      <a class="trow item" href="#${p.id}" data-id="${p.id}">
+        <span class="t-no">${no(p.idx)}</span>
+        <span class="t-sw" style="background:${p.hex}"></span>
+        <span class="t-name"><em>${esc(p.cat)}</em>${esc(p.name)}</span>
+        <span class="t-desc">${esc(p.note)}</span>
+        <span class="t-price">${esc(p.price)}</span>
+        <span class="t-go">→</span>
+      </a>`).join(''));
+  }
+  render();
+
+  /* --- 操作 --- */
+  let timer;
+  $('#q').on('input', function(){
+    const v = this.value.trim().toLowerCase();
+    clearTimeout(timer);
+    timer = setTimeout(() => { state.q = v; render(); }, 160);
+  });
+  $('#cats').on('click', '.chip-btn', function(){
+    $('.chip-btn').removeClass('on'); $(this).addClass('on');
+    state.cat = $(this).data('cat'); render();
+  });
+  $('#sort').on('change', function(){ state.sort = this.value; render(); });
+
+  /* --- 該当カードへ移動 --- */
+  function goTo(id){
+    const $c = $('#' + id);
+    if(!$c.length) return;
+    $c[0].scrollIntoView({behavior:'smooth', block:'center'});
+    $c.addClass('flash');
+    setTimeout(() => $c.removeClass('flash'), 1500);
+  }
+  $('#scale').on('click', '.chip', function(){ goTo($(this).data('target')); });
+  $('#tbody').on('click', '.trow.item', function(e){ e.preventDefault(); goTo($(this).data('id')); });
+
+  /* --- 詳細モーダル --- */
+  const modal = new bootstrap.Modal('#detail');
+  const toast = new bootstrap.Toast('#toast', {delay:2200});
+  let current = null;
+
+  $('#grid').on('click', '.js-detail', function(){
+    const p = MASTER.find(x => x.id === $(this).data('id'));
+    if(!p) return;
+    current = p;
+    $('#mTitle').text(p.name);
+    $('#mBody').html(`
+      ${p.img ? `<div class="m-photo"><img src="${esc(p.img)}" alt="${esc(p.name)}"></div>` : ``}
+      <div class="d-flex gap-3 align-items-start mb-4">
+        <div class="swatch" data-finish="${p.finish}" style="background:${p.hex};width:88px">
+          <span class="tag">${p.hex.toUpperCase()}</span>
+        </div>
+        <div>
+          <span class="card-cat">${esc(p.cat)}</span>
+          <p class="mb-0 mt-2" style="font-size:.86rem;color:var(--mid)">${esc(p.shade)} / ${esc(p.finishJp)}仕上げ</p>
+          <p class="mb-0 mono" style="font-size:.72rem;color:var(--dim)">明度 ${p.lum.toFixed(1)} / 参考価格 ${esc(p.price)}</p>
+        </div>
+      </div>
+      <p class="verdict mb-4">${p.verdict}</p>
+      <div class="specs">
+        ${p.specs.map(s => `<div><span class="k">${esc(s[0])}</span><span class="v">${esc(s[1])}</span></div>`).join('')}
+      </div>`);
+    $('#mBuy').html(p.url
+      ? `<a class="btn-buy" href="${p.url}" target="_blank" rel="nofollow sponsored noopener">Amazonで見る</a>`
+      : `<span class="btn-buy" data-empty="1">リンク準備中</span>`);
+    modal.show();
+  });
+
+  $('#mCopy').on('click', function(){
+    if(!current) return;
+    const url = location.origin + location.pathname + '#' + current.id;
+    navigator.clipboard.writeText(url)
+      .then(() => { $('#toastMsg').text('リンクをコピーしました'); toast.show(); })
+      .catch(() => { $('#toastMsg').text('コピーできませんでした'); toast.show(); });
+  });
+
+  /* --- スクロール表示 --- */
+  const io = new IntersectionObserver(en => {
+    en.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.12});
+  $('.card-x').each(function(i){
+    this.style.transitionDelay = (i % 2) * 90 + 'ms';
+    io.observe(this);
+  });
+
+  /* --- 進捗バー・トップへ・現在地ハイライト --- */
+  const $prog = $('#prog'), $toTop = $('#toTop'), $links = $('.navbar.site .nav-link[href^="#"]');
+  $(window).on('scroll', function(){
+    const y = window.scrollY;
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    $prog.css('width', (h > 0 ? y / h * 100 : 0) + '%');
+    $toTop.toggleClass('on', y > 700);
+
+    let active = '';
+    $('section[id]').each(function(){
+      if(this.getBoundingClientRect().top <= 140) active = this.id;
+    });
+    $links.removeClass('active').filter('[href="#' + active + '"]').addClass('active');
+  });
+  $toTop.on('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+  /* --- モバイルではメニューを閉じてから移動 --- */
+  $('#navPanel .nav-link[href^="#"]').on('click', function(){
+    const oc = bootstrap.Offcanvas.getInstance('#navPanel');
+    if(oc) oc.hide();
+  });
+
+  /* --- ヒーローの光沢（マウス環境のみ） --- */
+  if(window.matchMedia('(hover:hover)').matches &&
+     !window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+    const $hero = $('.hero'), spot = document.getElementById('spot');
+    $hero.on('pointermove', function(e){
+      const r = this.getBoundingClientRect();
+      spot.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      spot.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    }).on('pointerleave', () => $(spot).css('opacity', 0))
+      .on('pointerenter', () => $(spot).css('opacity', 1));
+  }
+
+  /* --- 直リンク（#g0 など）で開いた場合 --- */
+  if(location.hash && $(location.hash).hasClass('card-x')){
+    setTimeout(() => goTo(location.hash.slice(1)), 400);
+  }
+});
+</script>
+</body>
+</html>
