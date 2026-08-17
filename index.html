@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>黒見本帳 ｜ ポチの黒いガジェット一覧</title>
-<meta name="description" content="黒いガジェットだけを選び続けているポチ（@pochi_blackgadget）が、実際に机の上で使っているものを黒の濃さ順に並べた一覧です。">
+<title>黒いガジェット図鑑 ｜ ポチが実際に使っている黒いガジェット一覧</title>
+<meta name="description" content="ガジェット好き・黒いもの好きのポチ（@pochi_blackgadget）が、実際に買って使い続けている「買ってよかった黒いガジェット」だけをまとめた一覧です。">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -112,13 +112,6 @@ h1 .thin{font-weight:500;color:var(--mid)}
 .hero-meta{margin-top:clamp(26px,5vh,44px);display:flex;gap:clamp(18px,5vw,48px);flex-wrap:wrap;padding-top:18px;border-top:1px solid var(--line-soft);opacity:0;animation:fade .9s ease .6s forwards}
 .hero-meta .val{font-family:var(--f-mono);font-size:1rem;display:block;margin-top:3px}
 
-/* ティッカー */
-.ticker{border-block:1px solid var(--line);overflow:hidden;white-space:nowrap;padding-block:9px;background:var(--ink)}
-.ticker .track{display:inline-flex;gap:36px;animation:slide 34s linear infinite;will-change:transform}
-.ticker span{font-family:var(--f-mono);font-size:.64rem;letter-spacing:.16em;color:var(--dim);display:inline-flex;align-items:center;gap:8px}
-.ticker i{width:9px;height:9px;display:inline-block;border:1px solid var(--line)}
-@keyframes slide{to{transform:translateX(-50%)}}
-
 /* ============================================================
    セクション見出し
    ============================================================ */
@@ -151,7 +144,7 @@ h1 .thin{font-weight:500;color:var(--mid)}
    ============================================================ */
 .tbl{border:1px solid var(--line);border-bottom:0}
 .trow{
-  display:grid;grid-template-columns:50px 28px minmax(160px,1.05fr) minmax(180px,1.5fr) 112px 32px;
+  display:grid;grid-template-columns:50px minmax(170px,1.05fr) minmax(180px,1.5fr) 112px 32px;
   align-items:center;gap:16px;padding:14px clamp(14px,2vw,22px);
   border-bottom:1px solid var(--line);text-decoration:none;position:relative;
   transition:background .25s;color:inherit;
@@ -163,7 +156,6 @@ h1 .thin{font-weight:500;color:var(--mid)}
 .trow.item:hover::before,.trow.item:focus-visible::before{transform:scaleY(1)}
 .trow.item:focus-visible{box-shadow:inset 0 0 0 1px var(--glow)}
 .t-no{font-family:var(--f-mono);font-size:.65rem;color:var(--dim)}
-.t-sw{width:26px;height:26px;border:1px solid var(--line)}
 .t-name{font-family:var(--f-display);font-weight:500;font-size:.89rem;line-height:1.5;letter-spacing:-.01em}
 .t-name em{display:block;font-style:normal;font-family:var(--f-mono);font-size:.56rem;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;margin-bottom:3px}
 .t-desc{font-size:.77rem;color:var(--mid);line-height:1.7}
@@ -171,22 +163,6 @@ h1 .thin{font-weight:500;color:var(--mid)}
 .t-go{font-family:var(--f-mono);font-size:.78rem;color:var(--dim);text-align:right;transition:transform .3s,color .3s}
 .trow.item:hover .t-go{transform:translateX(4px);color:var(--glow)}
 .empty{padding:40px 20px;text-align:center;color:var(--dim);font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;border-bottom:1px solid var(--line)}
-
-/* ============================================================
-   見本帳
-   ============================================================ */
-.scale{display:grid;grid-template-columns:repeat(6,1fr);border:1px solid var(--line)}
-.chip{appearance:none;border:0;border-right:1px solid var(--line);background:transparent;color:inherit;font:inherit;text-align:left;cursor:pointer;padding:0;display:block}
-.chip:last-child{border-right:0}
-.chip .fill{height:clamp(84px,14vw,148px);transition:filter .35s;position:relative}
-.chip .fill::after{content:"";position:absolute;inset:0;opacity:0;transition:opacity .35s;background:linear-gradient(140deg,rgba(255,255,255,.22),transparent 55%)}
-.chip .cap{padding:10px 8px 12px;border-top:1px solid var(--line);background:var(--ink)}
-.chip .hex{font-family:var(--f-mono);font-size:.6rem;color:var(--dim);display:block;transition:color .25s}
-.chip .jp{font-family:var(--f-display);font-weight:500;font-size:.7rem;color:var(--mid);display:block;margin-top:2px;white-space:nowrap}
-.chip:hover .fill,.chip:focus-visible .fill{filter:brightness(2.2)}
-.chip:hover .fill::after,.chip:focus-visible .fill::after{opacity:1}
-.chip:hover .hex,.chip:focus-visible .hex{color:var(--glow)}
-.chip:focus-visible{outline:2px solid var(--glow);outline-offset:-2px}
 
 /* ============================================================
    カード
@@ -200,15 +176,8 @@ h1 .thin{font-weight:500;color:var(--mid)}
 }
 .card-x.in{opacity:1;transform:none}
 .card-x.flash{background:var(--surface-2)}
-.card-top{display:flex;gap:18px;align-items:flex-start}
-.swatch{width:clamp(72px,10vw,100px);aspect-ratio:1;flex:none;border:1px solid var(--line);position:relative;overflow:hidden}
-.swatch[data-finish="anodized"]::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.055) 0 1px,transparent 1px 3px)}
-.swatch[data-finish="gloss"]::after{content:"";position:absolute;inset:0;background:linear-gradient(128deg,rgba(255,255,255,.2),rgba(255,255,255,0) 42%,rgba(255,255,255,.06) 78%,rgba(255,255,255,0))}
-.swatch[data-finish="matte"]::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 30% 0%,rgba(255,255,255,.07),transparent 62%)}
-.swatch .tag{position:absolute;left:0;bottom:0;font-family:var(--f-mono);font-size:.54rem;color:var(--glow);background:rgba(0,0,0,.65);padding:3px 5px;z-index:2}
 .card-cat{font-family:var(--f-mono);font-size:.59rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
 .card-x h3{font-family:var(--f-display);font-weight:700;font-size:clamp(1rem,2.4vw,1.24rem);letter-spacing:-.018em;line-height:1.45;margin-top:8px;text-wrap:balance}
-.card-finish{font-family:var(--f-mono);font-size:.63rem;color:var(--dim);margin-top:8px}
 .verdict{font-size:.86rem;color:var(--mid);border-left:1px solid var(--line);padding-left:16px}
 .verdict b{color:var(--fg);font-weight:500}
 .specs{border-top:1px solid var(--line-soft);padding-top:13px;display:grid;gap:6px}
@@ -235,23 +204,22 @@ h1 .thin{font-weight:500;color:var(--mid)}
 .card-photo{aspect-ratio:4/3;overflow:hidden;border:1px solid var(--line);background:var(--surface);position:relative}
 .card-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.16,1,.3,1)}
 .card-x:hover .card-photo img{transform:scale(1.035)}
-.card-photo .ph-tag{position:absolute;left:0;bottom:0;z-index:2;font-family:var(--f-mono);font-size:.54rem;letter-spacing:.14em;color:var(--mid);background:rgba(0,0,0,.66);padding:4px 7px}
 .m-photo{aspect-ratio:4/3;overflow:hidden;border:1px solid var(--line);margin-bottom:20px;background:var(--surface)}
 .m-photo img{width:100%;height:100%;object-fit:cover;display:block}
 
-/* モーダル */
+/* フィード内容（詳細モーダル） */
+.points{border-top:1px solid var(--line-soft);margin-top:22px;padding-top:20px;display:grid;gap:16px}
+.points .pt-head{font-family:var(--f-mono);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-bottom:14px}
+.points .pt{display:grid;grid-template-columns:26px 1fr;gap:14px;align-items:start}
+.points .pt-no{font-family:var(--f-mono);font-size:.62rem;color:var(--dim);padding-top:3px}
+.points .pt-lab{font-family:var(--f-display);font-weight:700;font-size:.82rem;letter-spacing:-.01em}
+.points .pt-txt{font-size:.8rem;color:var(--mid);line-height:1.85;margin-top:4px}
+
+/* モーダル
 .modal-content{background:var(--ink);border:1px solid var(--line)}
 .modal-header,.modal-footer{border-color:var(--line)}
 .modal-title{font-family:var(--f-display);font-weight:700;letter-spacing:-.02em;font-size:1.05rem}
 .btn-close{filter:invert(1) grayscale(1);opacity:.5}
-
-/* アコーディオン */
-.accordion-item{background:var(--ink);border-color:var(--line)}
-.accordion-button{background:var(--ink);color:var(--fg);font-family:var(--f-display);font-weight:700;font-size:.95rem;padding:20px 22px}
-.accordion-button:not(.collapsed){background:var(--surface-2);color:var(--fg);box-shadow:none}
-.accordion-button:focus{box-shadow:none;border-color:var(--glow)}
-.accordion-button::after{filter:invert(1) grayscale(1);opacity:.5}
-.accordion-body{color:var(--dim);font-size:.85rem;padding:0 22px 22px}
 
 /* IG / フッター / トップへ */
 .ig{padding-block:clamp(56px,9vh,105px);border-top:1px solid var(--line);text-align:center}
@@ -274,22 +242,12 @@ footer{border-top:1px solid var(--line);padding-block:34px 52px;font-size:.72rem
 /* ============================================================
    RESPONSIVE
    ============================================================ */
-@media(max-width:991px){
-  .scale{grid-template-columns:repeat(3,1fr)}
-  .chip:nth-child(3n){border-right:0}
-  .chip:nth-child(-n+3) .cap{border-bottom:1px solid var(--line)}
-}
 @media(max-width:767px){
   .grid{grid-template-columns:1fr}
-  .trow{grid-template-columns:36px 24px 1fr 92px;grid-template-areas:"no sw name price" ". . desc go";row-gap:6px;padding-block:15px}
+  .trow{grid-template-columns:36px 1fr 92px;grid-template-areas:"no name price" ". desc go";row-gap:6px;padding-block:15px}
   .trow.head{display:none}
-  .t-no{grid-area:no}.t-sw{grid-area:sw}.t-name{grid-area:name}
+  .t-no{grid-area:no}.t-name{grid-area:name}
   .t-price{grid-area:price}.t-desc{grid-area:desc}.t-go{grid-area:go}
-}
-@media(max-width:520px){
-  .scale{grid-template-columns:repeat(2,1fr)}
-  .chip:nth-child(3n){border-right:1px solid var(--line)}
-  .chip:nth-child(even){border-right:0}
 }
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -314,7 +272,7 @@ footer{border-top:1px solid var(--line);padding-block:34px 52px;font-size:.72rem
 <!-- ============ ナビ ============ -->
 <nav class="navbar site navbar-expand-lg">
   <div class="container-xxl h-100 d-flex align-items-center">
-    <a class="navbar-brand" href="#top">黒見本帳</a>
+    <a class="navbar-brand" href="#top">黒いガジェット図鑑</a>
     <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#navPanel" aria-controls="navPanel" aria-label="メニューを開く">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -326,9 +284,7 @@ footer{border-top:1px solid var(--line);padding-block:34px 52px;font-size:.72rem
       <div class="offcanvas-body justify-content-end">
         <ul class="navbar-nav align-items-lg-center">
           <li class="nav-item"><a class="nav-link" href="#index">Index</a></li>
-          <li class="nav-item"><a class="nav-link" href="#swatches">Swatches</a></li>
           <li class="nav-item"><a class="nav-link" href="#gear">Gear</a></li>
-          <li class="nav-item"><a class="nav-link" href="#criteria">Criteria</a></li>
           <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/pochi_blackgadget/" target="_blank" rel="noopener">Instagram ↗</a></li>
         </ul>
       </div>
@@ -346,18 +302,16 @@ footer{border-top:1px solid var(--line);padding-block:34px 52px;font-size:.72rem
     <span class="eyebrow">ポチ ｜ 黒いガジェットと仕事術</span>
   </div>
   <h1>
-    <span class="ln"><span>机の上から、</span></span>
-    <span class="ln"><span class="thin">色をなくす。</span></span>
+    <span class="ln"><span>買ってよかった黒、</span></span>
+    <span class="ln"><span class="thin">全部見せます。</span></span>
   </h1>
-  <p class="hero-lede">黒いガジェットだけを買い続けています。ここに並んでいるのは、Instagramで紹介して、いまも実際に自分の机で使っているものだけ。黒の濃さ順に並べました。</p>
+  <p class="hero-lede">ガジェットが好きで、黒いものが好き。だから買うときはいつも黒一択です。ここに並んでいるのは、実際に買って、いまも自分の机で使い続けている「買ってよかった」ものだけ。気になったものは、そのままAmazonでチェックできます。</p>
   <div class="hero-meta">
     <div><span class="eyebrow">掲載点数</span><span class="val" id="count">—</span></div>
     <div><span class="eyebrow">最終更新</span><span class="val">2026.08</span></div>
     <div><span class="eyebrow">Instagram</span><span class="val">@pochi_blackgadget</span></div>
   </div>
 </header>
-
-<div class="ticker" aria-hidden="true"><div class="track" id="track"></div></div>
 
 <!-- ============ INDEX ============ -->
 <section class="sec container-xxl" id="index">
@@ -377,8 +331,7 @@ footer{border-top:1px solid var(--line);padding-block:34px 52px;font-size:.72rem
       </div>
       <div class="col-8 col-lg-2">
         <select class="form-select" id="sort" aria-label="並べ替え">
-          <option value="dark">黒が濃い順</option>
-          <option value="light">黒が淡い順</option>
+          <option value="index">掲載順</option>
           <option value="cheap">価格が安い順</option>
           <option value="expensive">価格が高い順</option>
           <option value="name">製品名順</option>
@@ -390,63 +343,25 @@ footer{border-top:1px solid var(--line);padding-block:34px 52px;font-size:.72rem
 
   <div class="tbl">
     <div class="trow head" aria-hidden="true">
-      <span>No.</span><span></span><span>Product</span><span>Note</span><span class="text-end">Price</span><span></span>
+      <span>No.</span><span>Product</span><span>Note</span><span class="text-end">Price</span><span></span>
     </div>
     <div id="tbody"></div>
   </div>
 </section>
 
-<!-- ============ SWATCHES ============ -->
-<section class="sec container-xxl" id="swatches">
-  <div class="sec-head">
-    <span class="eyebrow">02 — Swatches</span>
-    <h2>ひとくちに黒と言っても、同じ黒はひとつもない。</h2>
-    <p>製品ごとの黒を見本にして並べました。色を選ぶと、その黒の製品まで移動します。</p>
-  </div>
-  <div class="scale" id="scale"></div>
-</section>
-
 <!-- ============ GEAR ============ -->
 <section class="sec container-xxl" id="gear">
   <div class="sec-head">
-    <span class="eyebrow">03 — Gear</span>
+    <span class="eyebrow">02 — Gear</span>
     <h2>使っているもの</h2>
     <p>最新の価格と在庫は各リンク先でご確認ください。</p>
   </div>
   <div class="grid" id="grid"></div>
 </section>
 
-<!-- ============ CRITERIA ============ -->
-<section class="sec container-xxl" id="criteria">
-  <div class="sec-head">
-    <span class="eyebrow">04 — Criteria</span>
-    <h2>黒を選ぶときに見ているところ</h2>
-  </div>
-  <div class="accordion" id="acc">
-    <div class="accordion-item">
-      <h3 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a1">指紋が目立たない仕上げか</button></h3>
-      <div id="a1" class="accordion-collapse collapse show" data-bs-parent="#acc">
-        <div class="accordion-body">光沢の強い黒は、届いた翌日には指紋だらけになります。写真に撮ったときの差も大きいので、マットかアルマイト仕上げを優先しています。</div>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a2">手持ちの黒と色味が揃うか</button></h3>
-      <div id="a2" class="accordion-collapse collapse" data-bs-parent="#acc">
-        <div class="accordion-body">青みの強い黒と茶色みの強い黒が混ざると、机の上が途端に散らかって見えます。濃さより色味を合わせるほうが効きます。</div>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a3">暗い部屋で見えるか</button></h3>
-      <div id="a3" class="accordion-collapse collapse" data-bs-parent="#acc">
-        <div class="accordion-body">黒い機材は夜になるとポートも刻印も見えません。バックライトの有無と、刻印のコントラストは必ず確認します。</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ INSTAGRAM ============ -->
 <section class="ig container-xxl">
-  <span class="eyebrow">05 — Follow</span>
+  <span class="eyebrow">03 — Follow</span>
   <h2>新しい黒は、<br>Instagramから。</h2>
   <p>買ったその日の写真と、1週間使ったあとの正直な感想を投稿しています。</p>
   <a class="handle" href="https://www.instagram.com/pochi_blackgadget/" target="_blank" rel="noopener">@pochi_blackgadget →</a>
@@ -496,105 +411,162 @@ footer{border-top:1px solid var(--line);padding-block:34px 52px;font-size:.72rem
 /* ============================================================
    ▼ 更新するのはこの配列だけ
 
-   url    : アフィリエイトリンク（空なら「リンク準備中」表示）
-   img    : 商品写真のパス（例 "images/000_MacBookPro.JPG"／省略可）
-   url2   : 2つ目の購入リンク（省略可）。urlLabel / url2Label でボタン名を変更できます
-   hex    : そのガジェットの黒。並べ替えと見本帳に使われます
-   finish : "matte" / "gloss" / "anodized"
+   cat    : カテゴリ（絞り込みボタンに使われます）
+   name   : 商品名
+   img    : 商品写真のパス（例 "images/001_MacBookPro.JPG"／省略可）
    note   : 一覧に出る1行概要（40字前後）
    verdict: 詳細カードに出るコメント（<b>で強調可）
+   points : ["見出し","本文"] の配列。フィード投稿の各スライドの内容を「詳細」に表示します
+   specs  : ["項目","内容"] の配列
+   price  : 参考価格
+   url    : アフィリエイトリンク（空なら「リンク準備中」表示）
+   url2   : 2つ目の購入リンク（省略可）。urlLabel / url2Label でボタン名を変更できます
+
+   ※ 掲載順は、この配列に書いた順番がそのまま表示順になります
    ============================================================ */
 const PRODUCTS = [
   { cat:"Laptop", name:"MacBook Pro 14インチ（M4）スペースブラック",
-    hex:"#1C1D21", shade:"スペースブラック", finish:"anodized", finishJp:"アルマイト",
-    img:"images/000_MacBookPro.JPG",
+    img:"images/001_MacBookPro.JPG",
     note:"ミッドナイトより深い黒。マットな質感で指紋が目立たない。",
-    verdict:"Airのミッドナイトとも迷ったけれど、<b>黒が欲しいならPro一択</b>だった。マットな仕上げで指紋が目立ちにくく、Thunderbolt 4が両サイドにあるので配線も自由。<b>Nano-textureディスプレイ</b>は窓辺でも屋外でも映り込まず、スピーカーもノートPCとは思えない重厚さ。",
+    verdict:"MacBook Pro 14インチ（M4）スペースブラック、24GBメモリ＋1TB＋Nano-textureの全部載せ構成。Airのミッドナイトと迷ったけど、結論「黒が欲しいならPro一択」でした。",
+    points:[
+      ["Proを選んだ理由","ミッドナイトより深い、この黒こそスペースブラック。Thunderbolt 4が両サイドにあって配線も自由。14インチは家でも外でもちょうどいい。"],
+      ["デザイン","お馴染みのリンゴマークも黒に映える。マットな質感で指紋が目立ちにくい。"],
+      ["ビルド","裏面はさりげないMacBook Proの刻印。上から見ても下から見てもいいパソコン。"],
+      ["ディスプレイ＆サウンド","Nano-textureで窓辺でも屋外でも反射で見にくくならない。スピーカーの重厚感もぜひ一度聴いてほしい。"]
+    ],
     specs:[["CHIP","Apple M4"],["MEMORY","24GB"],["STORAGE","SSD 1TB"],["DISPLAY","14インチ Liquid Retina XDR / Nano-texture"],["BATTERY","最大24時間"],["WEIGHT","約1.55kg"]],
     price:"¥248,800〜", url:"" },
 
   { cat:"Mouse", name:"Apple Magic Mouse（USB-C）ブラック",
-    hex:"#101116", shade:"濡羽色", finish:"gloss", finishJp:"グロス",
-    img:"images/001_MagicMouse.JPG",
+    img:"images/002_MagicMouse.JPG",
     note:"光沢の深い黒。天面すべてがトラックパッドになる。",
-    verdict:"白より<b>4,000円高い</b>のに、迷わず黒を選んだ。光沢天面なので指紋は正直少し目立つ。それでも<b>スペースブラックのMacとの相性は抜群</b>で、置いてあるだけで机が締まる。ワンボタンなのにスワイプもピンチも効く。",
+    verdict:"Magic Mouse（USB-C）のブラック。なぜか白より4,000円高い黒。正直に言うと光沢天面は指紋が少し目立つ。それでも、スペースブラックのMacとの相性は抜群です。",
+    points:[
+      ["定番＆黒の魅力","Macのマウスと言えばこれ。MacBookの相棒として定番の一台で、スペースブラックとの相性は抜群。"],
+      ["薄さ・Multi-Touch","普通のマウスに比べてかなり薄め。ワンボタンだけどスワイプやピンチ操作ができて、最先端を感じられる。"],
+      ["裏側","スイッチは裏側。片手でも届くのでそこまで気にならない。センサー位置は独特なので、繊細な人は使用感に違和感があるかも。"],
+      ["充電スタイル","トドメをさすかのような裏面充電。充電中は使えないけど、フル充電で約1ヶ月以上もつので実際は困らない。"]
+    ],
     specs:[["RATING","Amazon ★4.3（266件・2026年7月時点）"],["CONNECT","Bluetooth / ワンタップでペアリング"],["CHARGE","USB-C（ポートは裏面）"],["OPERATION","Multi-Touch（スクロール・スワイプ）"],["BATTERY","フル充電で約1ヶ月以上"]],
     price:"¥14,800", url:"https://www.amazon.co.jp/Apple-Magic-Mouse-USB-C-Multi-Touch%E5%AF%BE%E5%BF%9C/dp/B0DL714QWD?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=2JEU9JYGVCM5S&dib=eyJ2IjoiMSJ9.6oSh-VFDBmBpWvMHbAiIAtYv18IfyvKveM4W0OFuKQv26YWMB4pT3A7UM45jEXzWM5OD3tqY73jXhopHx6lz0Yqf_eT3n9-LklZjo45-Nch-8I3VoEcLl8n598IUWYj1pgUkKRsMMKa_A56WG0QAfIdOCvPGnI3kRxfbqjnv-5ClXreRaW9N8cSOTAUMOQUgpGc6GEGASIt2qqgszSNmo8mOmwRoAILIxHzNp_OSyNIBZctsoTuYKDQJfLYC10FdwT_OlXAmIPtYokGvufVEbj2ZuzH2d_p9Z7fJiQq6hVk.47_NTLBnlhCAiyHoxQqIFJ8mQch_AHG8ot-kbPMCB7w&dib_tag=se&keywords=%E3%83%9E%E3%82%B8%E3%83%83%E3%82%AF%E3%83%9E%E3%82%A6%E3%82%B9&qid=1784117987&s=computers&sprefix=%E3%83%9E%E3%82%B8%E3%83%83%E3%82%AF%E3%83%9E%E3%82%A6%E3%82%B9%2Ccomputers%2C196&sr=1-4&ufe=app_do%3Aamzn1.fos.35785624-70c4-44ae-a5c3-3f044f475d63&th=1&linkCode=sl2&tag=chiroranran-22&linkId=4b13065713c976e3a756b545f1751d6f&ref_=as_li_ss_tl" },
 
   { cat:"Case", name:"ProCase マウスケース ハードシェル（EVA）",
-    hex:"#15161A", shade:"漆黒", finish:"gloss", finishJp:"グロス",
     img:"images/003_ProCaseMouseCase.JPG",
     note:"硬質EVAで潰れない。Magic Mouseがちょうど収まる。",
-    verdict:"¥14,800のMagic Mouseを裸で持ち歩くのが怖くて購入。<b>硬質EVAシェルでカバンの中で押されても潰れない</b>。メッシュポケットに充電ケーブルまで入るので、マウスまわりがひとまとめになる。1,500円でこの安心感はコスパが良すぎた。",
+    verdict:"Magic Mouse用に買ったProCaseのハードシェルケース。Amazon★4.6（1,610件）の定番ケースで、価格は¥1,499。持ち運び派のMagic Mouseユーザーは持っておいて損なしです。",
+    points:[
+      ["ハードシェル","Magic Mouseにジャストなサイズ感。硬質EVAでカバンの中で押されても潰れない。"],
+      ["収納","メッシュポケットに充電ケーブルが収まって、マウスまわりをひとまとめにできる。"]
+    ],
     specs:[["RATING","Amazon ★4.6（1,610件・2026年7月時点）"],["SHELL","硬質EVA ハードシェル"],["POCKET","メッシュポケット（ケーブル収納）"],["FOR","Magic Mouse ほか小型マウス"]],
     price:"¥1,499", url:"https://www.amazon.co.jp/dp/B01LX6C2ZT?social_share=cm_sw_r_apin_dp_ss_CN3REE1DG1WFBCVDADPG&linkCode=sl2&tag=chiroranran-22&linkId=cb97172aed876006ef8b69f30ff1421e&ref_=as_li_ss_tl" },
 
   { cat:"Desk", name:"YSAGi デスクマット PUレザー（ブラック）",
-    hex:"#2A2B31", shade:"炭色", finish:"matte", finishJp:"マット",
     img:"images/004_YSAGiDeskMat.JPG",
     note:"敷くだけで机が締まる。マウスのスライド音が静かになる。",
-    verdict:"2,000円弱で<b>デスクの質感が一段変わる</b>。表面がなめらかでマウスのスライド音が静かになり、裏面の防滑加工でタイピングしてもズレない。防水・防油なので手入れは拭くだけ。左上の型押しロゴがワンポイントで、物撮りの背景にも優秀。",
+    verdict:"黒デスクに合わせて買ったYSAGiのPUレザーデスクマット。Amazon★4.4（1,982件）の定番マットで、価格は¥1,880。デスクの見た目・打鍵感・マウス音、全部がワンランク上がりました。",
+    points:[
+      ["質感・静音","表面がなめらかでマウスのスライド音がとても静かに。マットな質感が黒デスクに馴染む。"],
+      ["サイズ感","MacBookとマウスを置いてもゆとりあり。マウスパッドいらずでデスクが広く使える。"],
+      ["裏面グリップ","裏面は防滑加工で、タイピングしてもズレない安定感。"],
+      ["ロゴ","左上の型押しロゴがワンポイント。安見えしない上品な仕上がりで、物撮り背景にも優秀。"]
+    ],
     specs:[["RATING","Amazon ★4.4（1,982件・2026年7月時点）"],["SIZE","60×35cm"],["MATERIAL","PUレザー（防水・防油・断熱）"],["BACK","超防滑加工"]],
     price:"¥1,880", url:"https://www.amazon.co.jp/dp/B08CZ4XW6Q?th=1&linkCode=sl2&tag=chiroranran-22&linkId=c25811832e25b32153fae981c9503e09&ref_=as_li_ss_tl" },
 
   { cat:"Desk", name:"サンワダイレクト キーボードスライダー 100-KB008（L）",
-    hex:"#1A1B1F", shade:"鉄黒", finish:"matte", finishJp:"マット",
     img:"images/005_SanwaKBSlider.JPG",
     note:"デスク下に後付け。しまえば机の上がいつも広い。",
-    verdict:"昇降デスクで画面の高さを合わせると、今度はキーボードが打ちにくくなる。その問題を<b>クランプ固定の後付けスライダー</b>で解決した。4段階の高さ調整で机より低い位置にタイピング面をつくれて、使わない時はスライドでしまうだけ。※設置前にサイズ確認は忘れずに。",
+    verdict:"昇降デスクで画面の高さを合わせるとキーボードが操作しにくい問題を、サンワダイレクトの後付けキーボードスライダーで解決しました。デスクの上が広くなって、タイピングの姿勢もラクに。",
+    points:[
+      ["後付け設置","クランプ固定で工事いらず。昇降デスクにも後付けできて、天板下にすっきり収まる。"],
+      ["高さ調整","4段階の高さ調整対応。デスクより低い位置で操作できるから、画面を上げてもキーボードはそのまま。"],
+      ["スライド収納","使わない時はスライドでしまうだけ。デスクの上がいつも広く使える。"],
+      ["広さ","フルキーボード＋マウスを置いても十分な広さのLサイズ。※設置前にサイズ確認は忘れずに。"]
+    ],
     specs:[["RATING","Amazon ★4.0（416件・2026年7月時点）"],["MOUNT","クランプ固定（後付け・工事不要）"],["HEIGHT","4段階調整"],["SIZE","Lサイズ（フルキーボード＋マウス）"]],
     price:"¥6,780", url:"https://www.amazon.co.jp/dp/B08PDXVH1F?th=1&linkCode=sl2&tag=chiroranran-22&linkId=095bc55fbc0957dd7b5cb485568c8067&ref_=as_li_ss_tl" },
 
   { cat:"Bag", name:"Evoon かわるガジェットポーチ（ブラック）",
-    hex:"#3B3C42", shade:"灰墨", finish:"matte", finishJp:"マット",
     img:"images/006_EvoonPouch.JPG",
     note:"がま口で自立。間仕切りとポケットが10箇所以上。",
-    verdict:"一見ふつうの黒ポーチだけど、<b>がま口×自立式で中身が一目瞭然</b>。間仕切りとポケットが10箇所以上あって、ガジェットの定位置が全部決まる。撥水生地と止水ファスナーで雨の日も安心、丈夫な持ち手付きでそのまま持ち出せる。",
+    verdict:"Evoonの「かわるガジェットポーチ」。Amazon★4.3（215件）、収納箇所が多すぎるので、ぜんぶ見せます。",
+    points:[
+      ["見た目","一見普通の黒ポーチ。撥水生地でどんなバッグにも馴染む。"],
+      ["がま口","チャック口ががま口のように開いて固定できる自立式。中身が一目瞭然。"],
+      ["間仕切り","中の間仕切りがたくさん。ガジェットの定位置が決まる。"],
+      ["小ポケット","小さいポケットが3つ。細かいものが迷子にならない。"],
+      ["チャック収納","落としたくない小物はファスナー付きポケットへ。"],
+      ["タッチペン","タッチペンもすっぽり。細物のスペースあり。"],
+      ["間仕切り収納","間仕切り自体にも収納が2箇所。デッドスペースなし。"],
+      ["サイド収納","サイドにも収納が2つ。よく使うものは外周へ。"],
+      ["防水チャック","止水ファスナーで雨の日も安心。"],
+      ["正面ポケット","磁石付きの正面ポケット。小物を片手でサッと。"],
+      ["背面ポケット","背面にはすぐ取り出せるオープンポケット。"],
+      ["持ち手","丈夫な持ち手付きで、そのまま持ち出せる。"]
+    ],
     specs:[["RATING","Amazon ★4.3（215件・2026年7月時点）"],["OPENING","がま口・自立式"],["POCKET","間仕切り＋ポケット10箇所以上"],["WATER","撥水生地・止水ファスナー"]],
     price:"¥5,980", url:"https://www.amazon.co.jp/dp/B0C7GWRY37?social_share=cm_sw_r_apin_dp_ss_Y3M1RQA8WDVYDJAZCNE3&linkCode=sl2&tag=chiroranran-22&linkId=acfc8be2e4e14438a793428425f4eca4&ref_=as_li_ss_tl" },
 
   { cat:"Cable", name:"Magtame マグネット充電ケーブル（USB-C / Lightning）",
-    hex:"#26272B", shade:"墨", finish:"matte", finishJp:"マット",
     img:"images/007_MagtameCable.JPG",
     note:"磁力で勝手にまとまる。ポーチの中で絡まらない。",
-    verdict:"丸めると<b>磁力でピタッと固定</b>されて、結束バンドがいらない。ケーブル同士もくっつくのでポーチの中で絡まらず、使う時は必要な分だけ伸ばして止められる。ケーブルが「片付く」体験は想像以上に気持ちいい。",
+    verdict:"磁石で勝手にまとまるMagtameのマグネットケーブル。フラット形状×磁力内蔵で、ケーブルのストレスがほぼ消えました。",
+    points:[
+      ["マグネット","磁力で自動的に巻きつく。結束バンドいらずで、形状記憶だからクセもつかない。"],
+      ["持ち運び","ケーブル同士が磁石でくっつくから、ポーチの中で絡まらずコンパクト。"],
+      ["使い勝手","使う時は必要な分だけ伸ばして固定。余ったケーブルがデスクで暴れない。"]
+    ],
     specs:[["RATING","Amazon ★3.5（919件・Lightning版・2026年7月時点）"],["TYPE","フラット平形・形状記憶"],["USB-C","60W PD対応・3A急速充電"],["LIGHTNING","MFi認証・2.4A急速充電"]],
     price:"実売¥2,000前後",
     url:"https://www.amazon.co.jp/dp/B0CWCWC3L2?&linkCode=sl2&tag=chiroranran-22&linkId=30c18dd1dbab4d561d1087eb26a167d5&ref_=as_li_ss_tl", urlLabel:"USB-C版",
     url2:"https://www.amazon.co.jp/dp/B0DG2H5DW6?social_share=cm_sw_r_apin_dp_ss_D8HCDC37GCQS95TCFNH2&th=1&linkCode=sl2&tag=chiroranran-22&linkId=fafca820989bbca4ed518908d71fb56b&ref_=as_li_ss_tl", url2Label:"Lightning版" },
 
   { cat:"Charger", name:"Anker Nano II 65W",
-    hex:"#1E1F23", shade:"黒鉄色", finish:"matte", finishJp:"マット",
     img:"images/008_AnkerNano65W.JPG",
     note:"65Wとは思えない小ささ。持ち出す充電器の定番。",
-    verdict:"急速充電といったらこれ、の定番中の定番。<b>GaN II採用で65Wとは思えない小ささ</b>、折りたたみプラグなのでポーチに放り込める。1ポートに割り切っているぶんコンパクトで、持ち出す充電器としては個人的にイチオシ。",
+    verdict:"Anker Nano II 65W。急速充電の定番、カテゴリベストセラー1位。Amazon★4.6（17,000件超）は伊達じゃないです。",
+    points:[
+      ["パワー","独自技術GaN IIで小型なのに最大65W。MacBook ProもiPhoneもこれ1台で急速充電。"],
+      ["サイズ","1ポート特化だから驚くほどコンパクト。折りたたみプラグでポーチにもすっと入る。"]
+    ],
     specs:[["RATING","Amazon ★4.6（17,683件・2026年7月時点／カテゴリ1位）"],["OUTPUT","最大65W PD"],["PORT","USB-C×1"],["PLUG","折りたたみ式"]],
     price:"実売¥3,000台", url:"https://www.amazon.co.jp/dp/B08X11GD52?th=1&linkCode=sl2&tag=chiroranran-22&linkId=4424d87efe962eef4925d094c36d94cf&ref_=as_li_ss_tl" },
 
   { cat:"Keyboard", name:"ロジクール ワイヤレスキーボード K780",
-    hex:"#2E2F35", shade:"鈍色", finish:"matte", finishJp:"マット",
     img:"images/009_LogicoolK780.JPG",
     note:"キー中央の凹みで打ちやすい。スマホスタンド内蔵。",
-    verdict:"キーの中央が凹んでいて<b>指が吸い付くように打てる</b>。本体の溝がそのままスマホ・タブレットスタンドになり、通知を見ながら作業できるのが地味に便利。最大3台をボタン一つで切り替えられるフルサイズ。",
+    verdict:"ワイヤレスキーボードK780。Amazon★4.2（約2,000件）の定番キーボード、使ってみたら納得でした。",
+    points:[
+      ["打鍵感","キーの中央が凹んでいて指が迷わない。静かで心地いい打鍵感のフルサイズ。"],
+      ["スマホスタンド","本体の溝にスマホが置ける。通知を見ながら作業できるのが地味に便利。"],
+      ["縦置き・マルチ接続","縦向きでも安定。最大3台までペアリングして、ボタン一つで切り替え。"]
+    ],
     specs:[["RATING","Amazon ★4.2（1,996件・2026年7月時点）"],["CONNECT","Bluetooth / Unifying"],["MULTI","最大3台をボタンで切り替え"],["STAND","スマホ・タブレット対応"],["OS","Windows / Mac / iOS / Android"]],
     price:"¥8,273", url:"https://www.amazon.co.jp/dp/B01H2VY13G?th=1&linkCode=sl2&tag=chiroranran-22&linkId=18bb3b640f08bef2a428a68f03f82f8a&ref_=as_li_ss_tl" },
 
   { cat:"Desk", name:"YIHAYO 電動昇降L字デスク 幅140×奥行90cm",
-    hex:"#212227", shade:"黒檀", finish:"matte", finishJp:"マット",
     img:"images/010_YihayoLDesk.JPG",
     note:"部屋の角がそのまま仕事場に。静音昇降＋メモリー3箇所。",
-    verdict:"モニターもPCも置いてまだ余る<b>L字140×90cm</b>。作動音が静かで夜でも上げ下げできて、高さメモリーは3箇所。天板の継ぎ目に若干の隙間があるので、書き物が多いならマット併用がおすすめ。本体が重いのでキャスター化はほぼ必須。",
+    verdict:"YIHAYOの電動昇降L字デスク（幅140×奥行90cm）。広さ・静音性・価格のバランスが良くて、気になる点も含めて正直に紹介します。",
+    points:[
+      ["L字レイアウト","幅140×奥行90cmのゆとり。モニターもPCも余裕で、部屋の角を無駄なく使える。"],
+      ["正直レビュー","天板の継ぎ目に若干の隙間あり。PC操作では全く気にならないけど、書き物が多い人はマット併用がおすすめ。"],
+      ["静音・メモリー","作動音が静かで夜でも使いやすい。高さメモリーは3箇所、フックは2箇所（取り付け位置は固定式）。"],
+      ["フック","ヘッドホンやバッグの定位置ができて、デスクの上が散らからない。※取り付け位置は固定式。"],
+      ["キャスター化","脚はもともと固定式。本体が重いので、動かす予定があるならキャスター交換が必須級（ホームセンターで購入）。"]
+    ],
     specs:[["RATING","Amazon ★3.9（34件・2026年7月時点）"],["SIZE","幅140×奥行90cm"],["MEMORY","高さメモリー3箇所"],["HOOK","収納フック2箇所（位置は固定）"],["NOTE","天板の継ぎ目に若干の隙間あり"]],
     price:"¥17,099", url:"https://www.amazon.co.jp/dp/B0FJYJP9R4?th=1&linkCode=sl2&tag=chiroranran-22&linkId=ea4ce6ef71cf26e1cf6234e4ec54c076&ref_=as_li_ss_tl" }
 ];
+
 
 /* ------------------------------------------------------------
    以下は描画処理（通常は編集不要）
    ------------------------------------------------------------ */
 $(function(){
 
-  const lum = h => { const n = parseInt(h.slice(1),16);
-    return (n>>16&255)*.299 + (n>>8&255)*.587 + (n&255)*.114; };
   const yen = p => parseInt(String(p).replace(/[^0-9]/g,''),10) || 0;
   const esc = s => $('<div>').text(s).html();
   const no  = i => String(i+1).padStart(2,'0');
@@ -603,12 +575,10 @@ $(function(){
       ? btn(p.url, p.urlLabel || 'Amazonで見る') + (p.url2 ? ' ' + btn(p.url2, p.url2Label || 'Amazonで見る') : '')
       : `<span class="btn-buy" data-empty="1">リンク準備中</span>`;
 
-  /* マスター：黒が濃い順に固定IDを振る */
-  const MASTER = PRODUCTS.map(p => $.extend({}, p, {lum:lum(p.hex), yenv:yen(p.price)}))
-                         .sort((a,b) => a.lum - b.lum)
-                         .map((p,i) => $.extend(p, {id:'g'+i, idx:i}));
+  /* マスター：配列に書いた順で固定IDを振る */
+  const MASTER = PRODUCTS.map((p,i) => $.extend({}, p, {id:'g'+i, idx:i, yenv:yen(p.price)}));
 
-  const state = {q:'', cat:'ALL', sort:'dark'};
+  const state = {q:'', cat:'ALL', sort:'index'};
 
   /* --- カテゴリボタン --- */
   const cats = ['ALL', ...new Set(MASTER.map(p => p.cat))];
@@ -616,26 +586,13 @@ $(function(){
     `<button type="button" class="chip-btn${c==='ALL'?' on':''}" data-cat="${esc(c)}">${c==='ALL'?'すべて':esc(c)}</button>`
   ).join(''));
 
-  /* --- 見本帳（並べ替えの影響を受けない固定表示） --- */
-  $('#scale').html(MASTER.map(p => `
-    <button class="chip" data-target="${p.id}" aria-label="${esc(p.shade)}の製品へ移動">
-      <span class="fill" style="background:${p.hex}"></span>
-      <span class="cap"><span class="hex">${p.hex.toUpperCase()}</span><span class="jp">${esc(p.shade)}</span></span>
-    </button>`).join(''));
-
   /* --- 詳細カード --- */
   $('#grid').html(MASTER.map(p => `
     <article class="card-x" id="${p.id}" data-cat="${esc(p.cat)}">
-      ${p.img ? `<div class="card-photo"><img src="${esc(p.img)}" alt="${esc(p.name)}" loading="lazy" decoding="async"><span class="ph-tag">${esc(p.shade)}</span></div>` : ``}
+      ${p.img ? `<div class="card-photo"><img src="${esc(p.img)}" alt="${esc(p.name)}" loading="lazy" decoding="async"></div>` : ``}
       <div class="card-top">
-        <div class="swatch" data-finish="${p.finish}" style="background:${p.hex}">
-          <span class="tag">${p.hex.toUpperCase()}</span>
-        </div>
-        <div class="flex-fill min-w-0">
-          <span class="card-cat">${no(p.idx)} / ${esc(p.cat)}</span>
-          <h3>${esc(p.name)}</h3>
-          <span class="card-finish">${esc(p.shade)} / ${esc(p.finishJp)}仕上げ</span>
-        </div>
+        <span class="card-cat">${no(p.idx)} / ${esc(p.cat)}</span>
+        <h3>${esc(p.name)}</h3>
       </div>
       <p class="verdict">${p.verdict}</p>
       <div class="specs">
@@ -650,22 +607,18 @@ $(function(){
       </div>
     </article>`).join(''));
 
-  /* --- ティッカー --- */
-  const line = MASTER.map(p => `<span><i style="background:${p.hex}"></i>${p.hex.toUpperCase()} ${esc(p.shade)}</span>`).join('');
-  $('#track').html(line + line);
   $('#count').text(no(MASTER.length - 1));
 
   /* --- 一覧の描画（検索・絞り込み・並べ替え） --- */
   function render(){
     let rows = MASTER.filter(p => {
       const hitCat = state.cat === 'ALL' || p.cat === state.cat;
-      const key = (p.name + p.cat + p.shade + p.note).toLowerCase();
+      const key = (p.name + p.cat + p.note).toLowerCase();
       return hitCat && key.includes(state.q);
     });
 
     const sorters = {
-      dark:      (a,b) => a.lum - b.lum,
-      light:     (a,b) => b.lum - a.lum,
+      index:     (a,b) => a.idx - b.idx,
       cheap:     (a,b) => a.yenv - b.yenv,
       expensive: (a,b) => b.yenv - a.yenv,
       name:      (a,b) => a.name.localeCompare(b.name,'ja')
@@ -681,7 +634,6 @@ $(function(){
     $('#tbody').html(rows.map(p => `
       <a class="trow item" href="#${p.id}" data-id="${p.id}">
         <span class="t-no">${no(p.idx)}</span>
-        <span class="t-sw" style="background:${p.hex}"></span>
         <span class="t-name"><em>${esc(p.cat)}</em>${esc(p.name)}</span>
         <span class="t-desc">${esc(p.note)}</span>
         <span class="t-price">${esc(p.price)}</span>
@@ -697,11 +649,11 @@ $(function(){
     clearTimeout(timer);
     timer = setTimeout(() => { state.q = v; render(); }, 160);
   });
+  $('#sort').on('change', function(){ state.sort = this.value; render(); });
   $('#cats').on('click', '.chip-btn', function(){
     $('.chip-btn').removeClass('on'); $(this).addClass('on');
     state.cat = $(this).data('cat'); render();
   });
-  $('#sort').on('change', function(){ state.sort = this.value; render(); });
 
   /* --- 該当カードへ移動 --- */
   function goTo(id){
@@ -711,7 +663,6 @@ $(function(){
     $c.addClass('flash');
     setTimeout(() => $c.removeClass('flash'), 1500);
   }
-  $('#scale').on('click', '.chip', function(){ goTo($(this).data('target')); });
   $('#tbody').on('click', '.trow.item', function(e){ e.preventDefault(); goTo($(this).data('id')); });
 
   /* --- 詳細モーダル --- */
@@ -726,20 +677,21 @@ $(function(){
     $('#mTitle').text(p.name);
     $('#mBody').html(`
       ${p.img ? `<div class="m-photo"><img src="${esc(p.img)}" alt="${esc(p.name)}"></div>` : ``}
-      <div class="d-flex gap-3 align-items-start mb-4">
-        <div class="swatch" data-finish="${p.finish}" style="background:${p.hex};width:88px">
-          <span class="tag">${p.hex.toUpperCase()}</span>
-        </div>
-        <div>
-          <span class="card-cat">${esc(p.cat)}</span>
-          <p class="mb-0 mt-2" style="font-size:.86rem;color:var(--mid)">${esc(p.shade)} / ${esc(p.finishJp)}仕上げ</p>
-          <p class="mb-0 mono" style="font-size:.72rem;color:var(--dim)">明度 ${p.lum.toFixed(1)} / 参考価格 ${esc(p.price)}</p>
-        </div>
+      <div class="mb-4">
+        <span class="card-cat">${esc(p.cat)}</span>
+        <p class="mb-0 mt-2 mono" style="font-size:.72rem;color:var(--dim)">参考価格 ${esc(p.price)}</p>
       </div>
       <p class="verdict mb-4">${p.verdict}</p>
       <div class="specs">
         ${p.specs.map(s => `<div><span class="k">${esc(s[0])}</span><span class="v">${esc(s[1])}</span></div>`).join('')}
-      </div>`);
+      </div>
+      ${(p.points && p.points.length) ? `<div class="points">
+        <div class="pt-head">Instagram投稿の内容</div>
+        ${p.points.map((t,i) => `<div class="pt">
+          <span class="pt-no">${no(i)}</span>
+          <span><span class="pt-lab">${esc(t[0])}</span><span class="pt-txt">${esc(t[1])}</span></span>
+        </div>`).join('')}
+      </div>` : ``}`);
     $('#mBuy').html(buyBtns(p));
     modal.show();
   });
